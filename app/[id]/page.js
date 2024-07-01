@@ -1,6 +1,17 @@
 import { notFound } from 'next/navigation'
 import React from 'react'
 import Image from 'next/image'
+async function getPokemons(){
+  try{
+    const response =await fetch("https://pokeapi.co/api/v2/pokemon?limit=200");
+  
+    return response.json();
+  }
+  catch(err){
+    throw new Error(err);
+  }
+  
+}
 async function getPokemon(idOrName){
   try{
 
@@ -19,7 +30,7 @@ async function getPokemon(idOrName){
 
 async function Page({params}) {
   const pokemon = await getPokemon(params.id)
-  console.log(pokemon);
+  console.log('inside page',params.id);
   if(!pokemon){
     notFound();
   }
@@ -85,3 +96,7 @@ async function Page({params}) {
 }
 
 export default Page
+export async function generateStaticParams(){
+  const {results} = await getPokemons();
+  return results.map(poke=>({id:`${poke.id}`}));
+}
