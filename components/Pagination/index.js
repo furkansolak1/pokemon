@@ -5,23 +5,23 @@ function Pagination() {
     const router = useRouter()
     const searchParams = useSearchParams()
     
-     const page = searchParams.get('page') ?? '1'
+    const page = searchParams.get('page') ?? '1'
     return (
-        <div className='flex  my-6 '>
+        <div className='flex my-6 '>
             <div className='mx-auto'>
                 <button
-            className='m-1 bg-yellow-500 font-bold text-gray-950 p-2 rounded'
-            
-            onClick={() => {
-            router.push(`/?page=${Number(page) - 1}`)
-            }}>
-            prev page
+                    className={`m-1  font-bold text-gray-950 p-2 rounded ${page==1? "pointer-events-none bg-gray-500":"bg-yellow-500"}`}
+                    
+                    onClick={() => {
+                    router.push(`/?page=${Number(page) - 1}`)
+                    }}>
+                    prev page
                 </button>
 
      
 
                 <button
-                    className='mx-auto bg-yellow-500 font-bold text-gray-950 p-2 rounded'
+                    className={`mx-auto bg-yellow-500 font-bold text-gray-950 p-2 rounded ${page==87? "pointer-events-none bg-gray-500":"bg-yellow-500"}`}
                     
                     onClick={() => {
                     router.push(`/?page=${Number(page) + 1}`)

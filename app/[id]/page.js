@@ -30,7 +30,7 @@ async function getPokemon(idOrName){
 
 async function Page({params}) {
   const pokemon = await getPokemon(params.id)
-  console.log('inside page',params.id);
+  //console.log('inside page-------------------------------------------------------------------------------------------',params.id);
   if(!pokemon){
     notFound();
   }
